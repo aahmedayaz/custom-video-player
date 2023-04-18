@@ -10,24 +10,37 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    background: url('./assets/webp/background-1.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 #main-heading{
+    color: rgb(255, 242, 121);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 25px 0 0 0;
+    position: absolute;
+    top: 15%;
+    font-size: 45px;
 }
 
 #describing-words{
-    margin: -3px 23px 25px 0;
+    color: white;
+    position: absolute;
+    top: 22%;
 }
 
 #video-container{
     position: relative;
-    width: 60%;
+    width: 50%;
     z-index: 10;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3), -20px 20px 20px rgba(0, 0, 0, 0.3);
+    top: 27%;
 }
 
+#video-container.theatre {
+    width: 70%;
+}
 
 #overlay-container{
     z-index: 12;
@@ -38,7 +51,7 @@ body{
     transition: opacity 150ms linear ;
 }
 
-#video-container:hover #overlay-container , #overlay-container:hover{
+#video-container:hover #overlay-container , #overlay-container:hover , .video-container.paused #overlay-container{
     opacity: 1;
 }
 
@@ -47,6 +60,7 @@ body{
     justify-content: space-between;
     height: 50px;
     margin: 0 15px;
+    color: white;
 }
 
 #overlay-container #controls button{
@@ -66,6 +80,7 @@ body{
 #overlay-container #controls .left-controls , #overlay-container #controls .right-controls{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .volume{
@@ -80,7 +95,7 @@ video{
 
 /* Icons Switching */
 
-svg.play , svg.volume-mute , svg.volume-low , svg.volume-average , svg.theatre-close , svg.fullscreen-exit{
+svg.play , svg.volume-mute , svg.volume-low , svg.volume-average , svg.theatre-closed , svg.fullscreen-exit{
     display: none;
 }
 
@@ -89,6 +104,14 @@ svg.play , svg.volume-mute , svg.volume-low , svg.volume-average , svg.theatre-c
 }
 
 #video-container.paused svg.pause{
+    display: none;
+}
+
+#video-container.theatre svg.theatre-closed{
+    display: block;
+}
+
+#video-container.theatre svg.theatre-open{
     display: none;
 }
 

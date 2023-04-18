@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Video Player</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
 </head>
 <body>
     <h1 id="main-heading">Custom Video Player</h1>
@@ -17,7 +16,7 @@
             <div class="controls" id="controls">
                 <div class="left-controls">
                     <!-- Play/ Pause Button -->
-                    <button>
+                    <button id="play-pause-btn">
                         <svg viewBox="0 96 960 960" id="play" class="play">
                             <path d="M320 853V293l440 280-440 280Z"/>
                         </svg>
@@ -44,7 +43,7 @@
     
                     <!-- Volume Slider -->
                     <input type="range" id="volume" class="volume"></input>
-    
+                    
                     <!-- Current Time/ Total Time -->
                     <span>0:00</span>
                     <span> / </span>
@@ -57,12 +56,12 @@
                             <path d="M180 896q-24 0-42-18t-18-42V316q0-24 18-42t42-18h600q24 0 42 18t18 42v520q0 24-18 42t-42 18H180Zm90-201h142q12.75 0 21.375-8.625T442 665v-42h-50v22H290V507h102v22h50v-42q0-12.75-8.625-21.375T412 457H270q-12.75 0-21.375 8.625T240 487v178q0 12.75 8.625 21.375T270 695Zm279 0h142q12 0 21-9t9-21v-42h-50v22H569V507h102v22h50v-42q0-12-9-21t-21-9H549q-12 0-21 9t-9 21v178q0 12 9 21t21 9Z"/>
                         </svg>
                     </button>
-
+                    
                     <!-- PlayBack Speed -->
                     <button id="playback-speed" class="playback-speed">
                         1x
                     </button>
-
+                    
                     <!-- MiniPlayer -->
                     <button>
                         <svg viewBox="0 0 24 24" id="miniplayer" class="miniplayer">
@@ -71,15 +70,15 @@
                     </button>
 
                     <!-- Theatre Mode -->
-                    <button>
-                        <svg viewBox="0 0 24 24" id="theatre-close" class="theatre-close">
+                    <button id="theatre-mode">
+                        <svg viewBox="0 0 24 24" id="theatre-closed" class="theatre-closed">
                             <path d="M19 6H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z"/>
-                          </svg>
-                          <svg viewBox="0 0 24 24" id="theatre-open" class="theatre-open">
+                        </svg>
+                        <svg viewBox="0 0 24 24" id="theatre-open" class="theatre-open">
                             <path d="M19 7H5c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 8H5V9h14v6z"/>
                           </svg>
                     </button>
-
+                        
                     <!-- FullScreen Mode -->
                     <button>
                         <svg viewBox="0 96 960 960" id="fullscreen-exit" class="fullscreen-exit">
@@ -89,10 +88,11 @@
                             <path d="M200 856V663h60v133h133v60H200Zm0-367V296h193v60H260v133h-60Zm367 367v-60h133V663h60v193H567Zm133-367V356H567v-60h193v193h-60Z"/>
                         </svg>
                     </button>
-                </div>
+                </div>    
             </div>
         </div>
-        <video src="./video.mp4" id="video" class="video">AHMED</video>
+        <video src="./video.mp4" id="video" class="video" autoplay>AHMED</video>
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>
