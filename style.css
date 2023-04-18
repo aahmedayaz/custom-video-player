@@ -14,20 +14,21 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    overflow: hidden;
 }
 
 #main-heading{
     color: rgb(255, 242, 121);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     position: absolute;
-    top: 15%;
+    bottom: 7%;
     font-size: 45px;
 }
 
 #describing-words{
     color: white;
     position: absolute;
-    top: 22%;
+    bottom: 5%;
 }
 
 #video-container{
@@ -35,11 +36,44 @@ body{
     width: 50%;
     z-index: 10;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3), -20px 20px 20px rgba(0, 0, 0, 0.3);
-    top: 27%;
+    top: 22%;
+}
+
+
+#video-container::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    aspect-ratio: 6/2;
+    background: linear-gradient( to top , rgba(0, 0, 0, 0.89) , transparent);
+}
+
+
+#video-container.fullscreen {
+    top: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+#video-container.fullscreen video{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 #video-container.theatre {
+    top: 0;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#video-container.theatre video {
     width: 70%;
+    height: 100%;
 }
 
 #overlay-container{
@@ -61,6 +95,7 @@ body{
     height: 50px;
     margin: 0 15px;
     color: white;
+    z-index: 14;
 }
 
 #overlay-container #controls button{
@@ -112,6 +147,14 @@ svg.play , svg.volume-mute , svg.volume-low , svg.volume-average , svg.theatre-c
 }
 
 #video-container.theatre svg.theatre-open{
+    display: none;
+}
+
+#video-container.fullscreen svg.fullscreen-exit{
+    display: block;
+}
+
+#video-container.fullscreen svg.fullscreen-enter{
     display: none;
 }
 

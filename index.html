@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1 id="main-heading">Custom Video Player</h1>
-    <small id="describing-words">with Theatre Mode + FullScreen Mode + MiniPlayer</small>
     <div id="video-container" class="video-container">
         <div class="overlay-container" id="overlay-container">
             <div class="timeline" id="timeline"></div>
@@ -63,7 +61,7 @@
                     </button>
                     
                     <!-- MiniPlayer -->
-                    <button>
+                    <button id="miniplayer-mode">
                         <svg viewBox="0 0 24 24" id="miniplayer" class="miniplayer">
                             <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-10-7h9v6h-9z"/>
                           </svg>
@@ -80,7 +78,7 @@
                     </button>
                         
                     <!-- FullScreen Mode -->
-                    <button>
+                    <button id="fullscreen-mode">
                         <svg viewBox="0 96 960 960" id="fullscreen-exit" class="fullscreen-exit">
                             <path d="M333 856V723H200v-60h193v193h-60Zm234 0V663h193v60H627v133h-60ZM200 489v-60h133V296h60v193H200Zm367 0V296h60v133h133v60H567Z"/>
                         </svg>
@@ -93,6 +91,8 @@
         </div>
         <video src="./video.mp4" id="video" class="video" autoplay>AHMED</video>
     </div>
+    <h1 id="main-heading">Custom Video Player</h1>
+    <small id="describing-words">with Theatre Mode + FullScreen Mode + MiniPlayer</small>
     <script src="./script.js"></script>
 </body>
 </html>
