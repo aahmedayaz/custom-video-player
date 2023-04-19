@@ -2,6 +2,7 @@
 const mainHeading = document.getElementById('main-heading')
 const describingWords = document.getElementById('describing-words')
 const playPauseBtn = document.getElementById('play-pause-btn')
+const volume = document.getElementById('volume')
 const videoContainer = document.getElementById('video-container')
 const video = document.getElementById('video')
 const theatreMode = document.getElementById('theatre-mode')
@@ -14,31 +15,49 @@ playPauseBtn.addEventListener('click' , () => {
     playPauseVideo();
 })
 
-/* 2- For Play/Pause Screen */
+/* 2- For Controls Pressing keys */ 
+document.addEventListener('keydown' , (e) => {
+    e.preventDefault();
+    switch(e.key.toLowerCase()){
+        case " " :
+        case "k":
+            playPauseVideo();
+            return;
+        case "f":
+            fullScreen();
+            return;
+        case "i":
+            miniplayer();
+            return;
+        case "t":
+            theatre();
+            return;
+    }
+})
+
+/* 3- For Play/Pause Screen */
 video.addEventListener('click' , () => {
     playPauseVideo();
 })
 
-/* 3- For Theatre */
+/* 4- For Theatre */
 theatreMode.addEventListener('click' , () => {
     theatre();
 })
 
-/* 4- For FullScreen */
+/* 5- For FullScreen */
 fullScreenMode.addEventListener('click' , () => {
     fullScreen();
 })
 
-/* 5- For MiniPlayer */
+/* 6- For MiniPlayer */
 miniplayerMode.addEventListener('click' , () => {
-    if(videoContainer.classList.contains('miniplayer')){
-        document.exitPictureInPicture();
-        videoContainer.classList.remove('miniplayer')
-    }
-    else{
-        videoContainer.classList.add('miniplayer')
-        video.requestPictureInPicture();
-    }
+    miniplayer();
+})
+
+/* 7- For Mute/Unmute */
+volume.addEventListener('click' , () => {
+    muteUnmute();
 })
 
 // Functions 
@@ -73,6 +92,28 @@ let fullScreen = () => {
         videoContainer.classList.add('fullscreen')
     }
 }
+
+let miniplayer = () => {
+    if(videoContainer.classList.contains('miniplayer')){
+        document.exitPictureInPicture();
+        videoContainer.classList.remove('miniplayer')
+    }
+    else{
+        videoContainer.classList.add('miniplayer')
+        video.requestPictureInPicture();
+    }
+}
+
+let muteUnmute = () => {
+    if(video.muted){
+        videoContainer.classList.remove('muted')
+        video.muted = false;
+    }
+    else{
+        videoContainer.classList.add('muted')
+        video.muted = true;
+    }
+} 
 
 
 // Init

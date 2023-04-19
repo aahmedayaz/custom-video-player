@@ -23,24 +23,26 @@
                         </svg>
                     </button>
     
-                    <!-- Volume Button -->
-                    <button>
-                        <svg viewBox="0 96 960 960" id="volume-mute" class="volume-mute">
-                            <path d="M813 1000 681 868q-28 20-60.5 34.5T553 925v-62q23-7 44.5-15.5T638 825L473 659v237L273 696H113V456h156L49 236l43-43 764 763-43 44Zm-36-232-43-43q20-34 29.5-72t9.5-78q0-103-60-184.5T553 287v-62q124 28 202 125.5T833 575q0 51-14 100t-42 93ZM643 634l-90-90V414q47 22 73.5 66t26.5 96q0 15-2.5 29.5T643 634ZM473 464 369 360l104-104v208Z"/>
-                        </svg>
-                        <svg viewBox="0 96 960 960" id="volume-low" class="volume-low">
-                            <path d="M280 696V456h160l200-200v640L440 696H280Z"/>
-                        </svg>
-                        <svg viewBox="0 96 960 960" id="volume-average" class="volume-average">
-                            <path d="M200 696V456h160l200-200v640L360 696H200Zm420 48V407q54 17 87 64t33 105q0 59-33 105t-87 63Z"/>
-                        </svg>
-                        <svg viewBox="0 96 960 960" id="volume-high" class="volume-high">
-                            <path d="M560 925v-62q97-28 158.5-107.5T780 575q0-101-61-181T560 287v-62q124 28 202 125.5T840 575q0 127-78 224.5T560 925ZM120 696V456h160l200-200v640L280 696H120Zm420 48V407q55 17 87.5 64T660 576q0 57-33 104t-87 64Z"/>
-                        </svg>
-                    </button>
-    
-                    <!-- Volume Slider -->
-                    <input type="range" id="volume" class="volume"></input>
+                    <div id="volume-container" class="volume-container">
+                        <!-- Volume Button -->
+                        <button id="volume" class="volume">
+                            <svg viewBox="0 96 960 960" id="volume-mute" class="volume-mute">
+                                <path d="M813 1000 681 868q-28 20-60.5 34.5T553 925v-62q23-7 44.5-15.5T638 825L473 659v237L273 696H113V456h156L49 236l43-43 764 763-43 44Zm-36-232-43-43q20-34 29.5-72t9.5-78q0-103-60-184.5T553 287v-62q124 28 202 125.5T833 575q0 51-14 100t-42 93ZM643 634l-90-90V414q47 22 73.5 66t26.5 96q0 15-2.5 29.5T643 634ZM473 464 369 360l104-104v208Z"/>
+                            </svg>
+                            <svg viewBox="0 96 960 960" id="volume-low" class="volume-low">
+                                <path d="M280 696V456h160l200-200v640L440 696H280Z"/>
+                            </svg>
+                            <svg viewBox="0 96 960 960" id="volume-average" class="volume-average">
+                                <path d="M200 696V456h160l200-200v640L360 696H200Zm420 48V407q54 17 87 64t33 105q0 59-33 105t-87 63Z"/>
+                            </svg>
+                            <svg viewBox="0 96 960 960" id="volume-high" class="volume-high">
+                                <path d="M560 925v-62q97-28 158.5-107.5T780 575q0-101-61-181T560 287v-62q124 28 202 125.5T840 575q0 127-78 224.5T560 925ZM120 696V456h160l200-200v640L280 696H120Zm420 48V407q55 17 87.5 64T660 576q0 57-33 104t-87 64Z"/>
+                            </svg>
+                        </button>
+        
+                        <!-- Volume Slider -->
+                        <input type="range" id="slider" class="slider" min="0" max="1" step="any" value="1"></input>
+                    </div>
                     
                     <!-- Current Time/ Total Time -->
                     <span>0:00</span>
