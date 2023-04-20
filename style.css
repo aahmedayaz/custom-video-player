@@ -136,6 +136,7 @@ body{
     width: 0;
     transform: scaleX(0);
     transition: width 0.2s linear;
+    height: 5px;
 }
 
 video{
@@ -146,7 +147,7 @@ video{
 
 /* Icons Switching */
 
-svg.play , svg.volume-mute , svg.volume-low , svg.volume-average , svg.theatre-closed , svg.fullscreen-exit{
+svg.play , svg.volume-high, svg.volume-mute , svg.volume-low , svg.volume-average , svg.theatre-closed , svg.fullscreen-exit{
     display: none;
 }
 
@@ -177,11 +178,22 @@ svg.play , svg.volume-mute , svg.volume-low , svg.volume-average , svg.theatre-c
 #video-container.muted svg.volume-mute{
     display: block;
     position: relative;
-    top: -2px;
 }
 
 #video-container.muted svg.volume-high{
     display: none;
+}
+
+#video-container.volume-high svg.volume-high{
+    display: block;
+}
+
+#video-container.volume-low svg.volume-low{
+    display: block;
+}
+
+#video-container.volume-average svg.volume-average{
+    display: block;
 }
 
 

@@ -8,6 +8,7 @@ const video = document.getElementById('video')
 const theatreMode = document.getElementById('theatre-mode')
 const fullScreenMode = document.getElementById('fullscreen-mode')
 const miniplayerMode = document.getElementById('miniplayer-mode')
+const slider = document.getElementById('slider')
 
 // Event Listeners
 /* 1- For Play/Pause Btn */ 
@@ -60,6 +61,35 @@ volume.addEventListener('click' , () => {
     muteUnmute();
 })
 
+/* 8- For Volume Slider */
+slider.addEventListener('input' , (e) => {
+    video.volume = e.target.value
+    if(video.volume == '1'){
+        videoContainer.classList.add('volume-high')
+        videoContainer.classList.remove('volume-low')
+        videoContainer.classList.remove('volume-average')
+        videoContainer.classList.remove('muted')
+    }
+    else if(video.volume > '0.3' && video.volume < '1'){
+        videoContainer.classList.add('volume-average')
+        videoContainer.classList.remove('volume-low')
+        videoContainer.classList.remove('volume-high')
+        videoContainer.classList.remove('muted')
+    }
+    else if(video.volume > '0' && video.volume < '0.3'){
+    videoContainer.classList.add('volume-low')
+    videoContainer.classList.remove('volume-high')
+    videoContainer.classList.remove('volume-average')
+    videoContainer.classList.remove('muted')
+    }
+    else if(video.volume == '0'){
+        videoContainer.classList.add('muted')
+        videoContainer.classList.remove('volume-low')
+        videoContainer.classList.remove('volume-average')
+        videoContainer.classList.remove('volume-high')
+    }
+})
+
 // Functions 
 
 let playPauseVideo = () => {
@@ -107,10 +137,16 @@ let miniplayer = () => {
 let muteUnmute = () => {
     if(video.muted){
         videoContainer.classList.remove('muted')
+        videoContainer.classList.add('volume-high')
+        slider.value = 1
         video.muted = false;
     }
     else{
         videoContainer.classList.add('muted')
+        videoContainer.classList.remove('volume-low')
+        videoContainer.classList.remove('volume-average')
+        videoContainer.classList.remove('volume-high')
+        slider.value = 0;
         video.muted = true;
     }
 } 
