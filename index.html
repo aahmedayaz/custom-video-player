@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div id="video-container" class="video-container volume-high">
+    <div id="video-container" class="video-container volume-high paused">
         <div class="overlay-container" id="overlay-container">
-            <div class="timeline" id="timeline"></div>
+            <div class="timeline-container" id="timeline-container">
+                <input type="range" name="timeline" id="timeline" class="timeline" min="0" max="100" step="any" value="0">
+            </div>
             <div class="controls" id="controls">
                 <div class="left-controls">
                     <!-- Play/ Pause Button -->
@@ -45,18 +47,11 @@
                     </div>
                     
                     <!-- Current Time/ Total Time -->
-                    <span>0:00</span>
-                    <span> / </span>
-                    <span>0:00</span>
+                    <span id="currentTime">00:00</span>
+                    <span id="slash"> / </span>
+                    <span id="totalTime">00:00</span>
                 </div>
                 <div class="right-controls">
-                    <!-- Caption -->
-                    <button>
-                        <svg viewBox="0 96 960 960" id="caption" class="caption">
-                            <path d="M180 896q-24 0-42-18t-18-42V316q0-24 18-42t42-18h600q24 0 42 18t18 42v520q0 24-18 42t-42 18H180Zm90-201h142q12.75 0 21.375-8.625T442 665v-42h-50v22H290V507h102v22h50v-42q0-12.75-8.625-21.375T412 457H270q-12.75 0-21.375 8.625T240 487v178q0 12.75 8.625 21.375T270 695Zm279 0h142q12 0 21-9t9-21v-42h-50v22H569V507h102v22h50v-42q0-12-9-21t-21-9H549q-12 0-21 9t-9 21v178q0 12 9 21t21 9Z"/>
-                        </svg>
-                    </button>
-                    
                     <!-- PlayBack Speed -->
                     <button id="playback-speed" class="playback-speed">
                         1x
@@ -91,7 +86,7 @@
                 </div>    
             </div>
         </div>
-        <video src="./video.mp4" id="video" class="video" autoplay>AHMED</video>
+        <video src="./video.mp4" id="video" class="video"></video>
     </div>
     <h1 id="main-heading">Custom Video Player</h1>
     <small id="describing-words">with Theatre Mode + FullScreen Mode + MiniPlayer</small>

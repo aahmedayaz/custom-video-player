@@ -9,7 +9,10 @@ const theatreMode = document.getElementById('theatre-mode')
 const fullScreenMode = document.getElementById('fullscreen-mode')
 const miniplayerMode = document.getElementById('miniplayer-mode')
 const slider = document.getElementById('slider')
-
+const currentTime = document.getElementById('currentTime')
+const totalTime = document.getElementById('totalTime')
+const timeline = document.getElementById('timeline')
+const playbackSpeed = document.getElementById('playback-speed')
 // Event Listeners
 /* 1- For Play/Pause Btn */ 
 playPauseBtn.addEventListener('click' , () => {
@@ -63,31 +66,28 @@ volume.addEventListener('click' , () => {
 
 /* 8- For Volume Slider */
 slider.addEventListener('input' , (e) => {
-    video.volume = e.target.value
-    if(video.volume == '1'){
-        videoContainer.classList.add('volume-high')
-        videoContainer.classList.remove('volume-low')
-        videoContainer.classList.remove('volume-average')
-        videoContainer.classList.remove('muted')
-    }
-    else if(video.volume > '0.3' && video.volume < '1'){
-        videoContainer.classList.add('volume-average')
-        videoContainer.classList.remove('volume-low')
-        videoContainer.classList.remove('volume-high')
-        videoContainer.classList.remove('muted')
-    }
-    else if(video.volume > '0' && video.volume < '0.3'){
-    videoContainer.classList.add('volume-low')
-    videoContainer.classList.remove('volume-high')
-    videoContainer.classList.remove('volume-average')
-    videoContainer.classList.remove('muted')
-    }
-    else if(video.volume == '0'){
-        videoContainer.classList.add('muted')
-        videoContainer.classList.remove('volume-low')
-        videoContainer.classList.remove('volume-average')
-        videoContainer.classList.remove('volume-high')
-    }
+    volumeHighAverageLowMuted(e);
+})
+
+/* 9- For Total Time */
+video.addEventListener('loadedmetadata' , () => {
+    totalTime.textContent = timeFormat(video.duration)
+})
+
+/* 10- For Current Time */
+video.addEventListener('timeupdate' , () => {
+    currentTime.textContent = timeFormat(video.currentTime)
+    updateTimeline();
+})
+
+/* 11- For Dragging the timeline */
+timeline.addEventListener('input' , () => {
+    video.currentTime = (timeline.value * video.duration) / 100;
+})
+
+/* 12- For Playback Speed */
+playbackSpeed.addEventListener('click' , () => {
+    changePlayBack();
 })
 
 // Functions 
@@ -120,6 +120,7 @@ let fullScreen = () => {
     }
     else{
         videoContainer.classList.add('fullscreen')
+        console.log(document.fullscreenElement);
     }
 }
 
@@ -139,6 +140,7 @@ let muteUnmute = () => {
         videoContainer.classList.remove('muted')
         videoContainer.classList.add('volume-high')
         slider.value = 1
+        video.volume = 1
         video.muted = false;
     }
     else{
@@ -147,10 +149,75 @@ let muteUnmute = () => {
         videoContainer.classList.remove('volume-average')
         videoContainer.classList.remove('volume-high')
         slider.value = 0;
+        video.volume = 0;
         video.muted = true;
     }
 } 
 
+let volumeHighAverageLowMuted = (e) => {
+    video.volume = e.target.value
+    if(e.target.value == '0' ){
+        video.muted = true;
+    }
+    else{
+        video.muted = false;
+    }
+    
+    if(video.volume == '1'){
+        videoContainer.classList.add('volume-high')
+        videoContainer.classList.remove('volume-low')
+        videoContainer.classList.remove('volume-average')
+        videoContainer.classList.remove('muted')
+    }
+    else if(video.volume > '0.3' && video.volume < '1'){
+        videoContainer.classList.add('volume-average')
+        videoContainer.classList.remove('volume-low')
+        videoContainer.classList.remove('volume-high')
+        videoContainer.classList.remove('muted')
+    }
+    else if(video.volume > '0' && video.volume < '0.3'){
+        videoContainer.classList.add('volume-low')
+        videoContainer.classList.remove('volume-high')
+        videoContainer.classList.remove('volume-average')
+        videoContainer.classList.remove('muted')
+    }
+    else if(video.volume == '0'){
+        videoContainer.classList.add('muted')
+        videoContainer.classList.remove('volume-low')
+        videoContainer.classList.remove('volume-average')
+        videoContainer.classList.remove('volume-high')
+    }
+}
 
-// Init
-video.play()
+
+let timeFormat = (timeInSeconds) => {
+    let hours = Math.floor(timeInSeconds/3600).toString()
+    let minutes = Math.floor((timeInSeconds - (hours * 3600)) / 60).toString()
+    let seconds = Math.floor(timeInSeconds % 60).toString()
+
+    hours = hours.length == 1 ? hours.padStart(2 , '0') : hours;
+    minutes = minutes.length == 1 ? minutes.padStart(2 , '0') : minutes;
+    seconds = seconds.length == 1 ? seconds.padStart(2 , '0') : seconds;
+
+    if(hours <= 0){
+        return `${minutes}:${seconds}`
+    }
+    else{
+        return `${hours}:${minutes}:${seconds}`
+    }
+}
+
+let updateTimeline = () => {
+    timeline.value = (video.currentTime*100) / video.duration
+}
+
+
+let changePlayBack = () => {
+    if(video.playbackRate < 2.0){
+        video.playbackRate += 0.25;
+    }
+    else{
+        video.playbackRate = 0.25;
+    }
+    playbackSpeed.textContent = `${video.playbackRate}x`
+}
